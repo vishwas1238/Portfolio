@@ -1,345 +1,691 @@
 /* ===============================
-   1. VARIABLES (Easy Customization)
-=================================*/
+   GOOGLE FONTS IMPORT
+================================*/
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ===============================
+   1. VARIABLES
+================================*/
 :root {
-    --primary: cyan;
-    --bg-dark: #141e30;
-    --bg-light: #243b55;
-    --text: white;
-    --card-bg: rgba(255,255,255,0.08);
+    --primary: #64ffda;
+    --primary-dim: rgba(100, 255, 218, 0.12);
+    --accent: #7f5af0;
+    --bg: #0a0f1e;
+    --bg-2: #0f172a;
+    --surface: rgba(255, 255, 255, 0.04);
+    --surface-hover: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.07);
+    --text: #e2e8f0;
+    --text-muted: #8892a4;
+    --display-font: 'Cormorant Garamond', serif;
+    --body-font: 'DM Sans', sans-serif;
+    --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 /* ===============================
-   2. RESET
-=================================*/
-body {
+   2. RESET & BASE
+================================*/
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
-    font-family: 'Poppins', Arial, sans-serif;
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
-    color: var(--text);
+    padding: 0;
+}
+
+html {
     scroll-behavior: smooth;
 }
 
+body {
+    font-family: var(--body-font);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Subtle noise overlay for texture */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+}
+
 /* ===============================
-   3. HEADER (Glass UI 🔥)
-=================================*/
+   3. HEADER / NAVBAR
+================================*/
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(15px);
+    padding: 22px 60px;
+    background: rgba(10, 15, 30, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+    font-family: var(--display-font);
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background: linear-gradient(120deg, #ffffff 30%, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* ===============================
-   4. NAVBAR
-=================================*/
+   4. NAVIGATION
+================================*/
+nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 nav a {
-    margin: 0 15px;
-    color: var(--text);
+    color: var(--text-muted);
     text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 8px 16px;
+    border-radius: 30px;
+    transition: var(--transition);
     position: relative;
-    transition: 0.3s;
 }
 
-nav a::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    background: var(--primary);
-    left: 0;
-    bottom: -5px;
-    transition: 0.3s;
+nav a:hover {
+    color: var(--primary);
+    background: var(--primary-dim);
 }
 
-nav a:hover::after {
-    width: 100%;
+nav a.active {
+    color: var(--primary);
+    background: var(--primary-dim);
 }
 
 /* ===============================
-   5. HERO (Modern Text 🔥)
-=================================*/
+   5. HERO SECTION
+================================*/
 .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 100px;
+    padding: 110px 40px 90px;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(100, 255, 218, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: slideUp 0.6s ease forwards 0.2s;
 }
 
 .hero h2 {
-    font-size: 45px;
-    background: linear-gradient(90deg, cyan, white);
+    font-family: var(--display-font);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: fadeIn 2s ease-in-out;
+    background-clip: text;
+    opacity: 0;
+    animation: slideUp 0.7s ease forwards 0.35s;
+    margin-bottom: 20px;
 }
 
-.hero p {
-    font-size: 22px;
-    color: var(--primary);
+#role {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    min-height: 1.7em;
+    opacity: 0;
+    animation: slideUp 0.7s ease forwards 0.5s;
 }
 
-/* ===============================
-   6. BUTTON (Glow Effect)
-=================================*/
-.btn {
-    padding: 10px 20px;
-    background: linear-gradient(45deg, cyan, blue);
-    color: white;
-    border-radius: 30px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    box-shadow: 0 0 15px var(--primary);
-    transform: scale(1.05);
-}
-
-/* ===============================
-   7. SECTIONS
-=================================*/
-section {
-    padding: 60px;
-}
-
-/* ===============================
-   8. PROJECT CARD (Glass + Hover)
-=================================*/
-.project-card {
-    background: var(--card-bg);
-    padding: 20px;
-    margin: 15px;
-    border-radius: 20px;
-    transition: 0.4s;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.project-card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 0 20px var(--primary);
-}
-
-/* ===============================
-   9. SKILL BAR (Animated)
-=================================*/
-.bar {
-    background: #444;
-    height: 10px;
-    border-radius: 10px;
-}
-
-.progress {
-    height: 10px;
-    background: linear-gradient(90deg, cyan, blue);
-    border-radius: 10px;
-    animation: loadBar 2s ease forwards;
-}
-
-@keyframes loadBar {
-    from { width: 0; }
-}
-
-/* ===============================
-   10. FORM
-=================================*/
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-}
-
-/* ===============================
-   11. ANIMATIONS
-=================================*/
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* ===============================
-   12. WHATSAPP FLOAT BUTTON 🔥
-=================================*/
-.whatsapp-float {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #25D366;
-    color: white;
-    font-size: 26px;
-    padding: 15px;
-    border-radius: 50%;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    text-decoration: none;
-    z-index: 1000;
-    animation: pulse 2s infinite;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
-    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-}
-
-/* ===============================
-   13. RESPONSIVE (Mobile)
-=================================*/
-@media (max-width: 768px) {
-
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav {
-        margin-top: 10px;
-    }
-
-    .hero {
-        padding: 50px;
-    }
-
-    .hero h2 {
-        font-size: 28px;
-    }
-
-    section {
-        padding: 30px;
-    }
-}
-
-/* ===============================
-   MOBILE PERFECT RESPONSIVE 🔥
-=================================*/
-
-/* Small devices (phones) */
-@media (max-width: 768px) {
-
-    /* HEADER */
-    header {
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    nav a {
-        margin: 5px;
-        font-size: 14px;
-    }
-
-    /* HERO */
-    .hero {
-        padding: 40px 20px;
-    }
-
-    .hero h2 {
-        font-size: 26px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    /* SECTIONS */
-    section {
-        padding: 25px 15px;
-    }
-
-    /* PROJECTS GRID */
-    .project-card {
-        margin: 10px 0;
-    }
-
-    /* SKILLS */
-    .skill {
-        margin-bottom: 15px;
-    }
-
-    /* FORM */
-    input, textarea {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
-
-    /* WHATSAPP BUTTON */
-    .whatsapp-float {
-        bottom: 15px;
-        right: 15px;
-        font-size: 20px;
-        padding: 12px;
-    }
-}
-
-/* Extra small devices (very small phones) */
-@media (max-width: 480px) {
-
-    .hero h2 {
-        font-size: 22px;
-    }
-
-    .hero p {
-        font-size: 14px;
-    }
-
-    nav a {
-        font-size: 12px;
-    }
-}
-/* ===============================
-   ABOUT CARD UI 🔥
-=================================*/
-
-.about-section {
+.hero-cta {
+    margin-top: 40px;
     display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
     justify-content: center;
+    opacity: 0;
+    animation: slideUp 0.7s ease forwards 0.65s;
+}
+
+/* ===============================
+   6. BUTTONS
+================================*/
+.btn {
+    display: inline-flex;
     align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-family: var(--body-font);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    border: none;
+    letter-spacing: 0.03em;
 }
 
-.about-card {
-    max-width: 800px;
-    background: rgba(255,255,255,0.08);
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: 0.4s;
+.btn-primary {
+    background: var(--primary);
+    color: #0a0f1e;
 }
 
-.about-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 20px cyan;
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(100, 255, 218, 0.3);
 }
 
-.about-text h2 {
-    margin-bottom: 15px;
-    color: cyan;
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid rgba(100, 255, 218, 0.35);
+}
+
+.btn-outline:hover {
+    background: var(--primary-dim);
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   7. SECTION STYLES
+================================*/
+section {
+    padding: 80px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: block;
+}
+
+section h2 {
+    font-family: var(--display-font);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 50px;
+    line-height: 1.2;
+}
+
+/* ===============================
+   8. ABOUT SECTION
+================================*/
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
 }
 
 .about-text p {
-    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.about-text p strong {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    background: var(--surface-hover);
+    border-color: rgba(100, 255, 218, 0.2);
+    transform: translateY(-4px);
+}
+
+.stat-number {
+    font-family: var(--display-font);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+}
+
+/* ===============================
+   9. SKILLS SECTION
+================================*/
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.skill-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: var(--transition);
+}
+
+.skill-item:hover {
+    background: var(--surface-hover);
+    border-color: rgba(100, 255, 218, 0.2);
+    transform: translateY(-4px);
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.skill-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.skill-percent {
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.bar {
+    background: rgba(255, 255, 255, 0.08);
+    height: 5px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 10px;
+    animation: loadBar 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes loadBar {
+    from { width: 0%; }
+}
+
+/* ===============================
+   10. PROJECTS SECTION
+================================*/
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.project-card:hover {
+    background: var(--surface-hover);
+    border-color: rgba(100, 255, 218, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-icon {
+    font-size: 1.8rem;
+    margin-bottom: 18px;
+    display: block;
+}
+
+.project-card h3 {
+    font-family: var(--display-font);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #fff;
     margin-bottom: 10px;
+}
+
+.project-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.project-tag {
+    display: inline-block;
+    background: var(--primary-dim);
+    color: var(--primary);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 16px;
+    font-weight: 500;
+}
+
+/* ===============================
+   11. CONTACT SECTION
+================================*/
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.contact-info h3 {
+    font-family: var(--display-font);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.contact-info p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin-bottom: 32px;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+.contact-link-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.contact-link:hover .contact-link-icon {
+    background: var(--primary-dim);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+/* ===============================
+   12. CONTACT FORM
+================================*/
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.78rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 13px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+input:focus, textarea:focus {
+    border-color: rgba(100, 255, 218, 0.45);
+    background: var(--surface-hover);
+    box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.06);
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(136, 146, 164, 0.5);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+/* ===============================
+   13. WHATSAPP FLOAT (UNCHANGED)
+================================*/
+.whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: #25D366;
+    color: white;
+    font-size: 24px;
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    text-decoration: none;
+    z-index: 1000;
+    animation: pulse 2s infinite;
+    transition: transform 0.2s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.12);
+}
+
+@keyframes pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(37, 211, 102, 0.6); }
+    70%  { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(37, 211, 102, 0); }
+}
+
+/* ===============================
+   14. DIVIDER
+================================*/
+.divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), transparent);
+    margin-bottom: 40px;
+}
+
+/* ===============================
+   15. ANIMATIONS
+================================*/
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ===============================
+   16. RESPONSIVE — TABLET
+================================*/
+@media (max-width: 900px) {
+    header { padding: 18px 30px; }
+    section { padding: 60px 30px; }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+/* ===============================
+   17. RESPONSIVE — MOBILE
+================================*/
+@media (max-width: 680px) {
+    header {
+        flex-direction: column;
+        gap: 14px;
+        padding: 16px 20px;
+    }
+
+    header h1 { font-size: 1.5rem; }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    nav a {
+        font-size: 0.78rem;
+        padding: 6px 12px;
+    }
+
+    .hero { padding: 70px 24px 60px; }
+
+    section { padding: 50px 22px; }
+
+    .about-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .whatsapp-float {
+        bottom: 18px;
+        right: 18px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-cta { flex-direction: column; align-items: center; }
+    .about-stats { grid-template-columns: 1fr; }
 }
