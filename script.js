@@ -247,7 +247,7 @@ if (heroDiv) {
     </section>`;
 
     // Typing animation
-    const fullText = "Hello, I'm Stranger";
+    const fullText = "Hello, I'm Vishwas Saroj";
     let i = 0;
     const typingEl = document.getElementById('typing');
 
