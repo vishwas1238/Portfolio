@@ -17,7 +17,7 @@ const headerDiv = document.getElementById('header');
 if (headerDiv) {
     headerDiv.innerHTML = `
     <header>
-        <h1>Stranger</h1>
+        <h1>Vishwas Saroj</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
