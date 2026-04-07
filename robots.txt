@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /node_modules/
+Disallow: /js/
+Disallow: /*.min.js$
+
 Sitemap: https://adverlyze.online/sitemap.xml
