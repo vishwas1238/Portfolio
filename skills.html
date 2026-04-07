@@ -1,23 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills — Vishwas Saroj</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills — Vishwas Saroj | Web Developer</title>
+  <meta name="description" content="Vishwas Saroj's technical skills: HTML (90%), CSS (85%), JavaScript (80%), PHP (75%), and Python (70%). Building modern web applications with passion.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- WhatsApp Float (unchanged) -->
-    <a href="https://wa.me/919172201238" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
-        💬
-    </a>
+  <a href="https://wa.me/919172201238" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">💬</a>
 
-    <div id="header"></div>
-    <div id="skills"></div>
+  <header>
+    <h1>Vishwas Saroj</h1>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-    <script src="script.js"></script>
+  <main>
+    <section aria-labelledby="skills-heading">
+      <span class="section-label">What I Know</span>
+      <h2 id="skills-heading">Skills</h2>
+      <div class="divider"></div>
+      <div class="skills-grid">
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">HTML</span>
+            <span class="skill-percent">90%</span>
+          </div>
+          <div class="bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="HTML proficiency 90%">
+            <div class="progress" style="width:90%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">CSS</span>
+            <span class="skill-percent">85%</span>
+          </div>
+          <div class="bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="CSS proficiency 85%">
+            <div class="progress" style="width:85%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">JavaScript</span>
+            <span class="skill-percent">80%</span>
+          </div>
+          <div class="bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="JavaScript proficiency 80%">
+            <div class="progress" style="width:80%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">PHP</span>
+            <span class="skill-percent">75%</span>
+          </div>
+          <div class="bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="PHP proficiency 75%">
+            <div class="progress" style="width:75%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Python</span>
+            <span class="skill-percent">70%</span>
+          </div>
+          <div class="bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="Python proficiency 70%">
+            <div class="progress" style="width:70%"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Vishwas Saroj. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
